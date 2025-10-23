@@ -1,0 +1,7 @@
+
+reflex==0.8.15a1
+openai
+pydub
+ffmpeg-python
+pyaudioop
+
