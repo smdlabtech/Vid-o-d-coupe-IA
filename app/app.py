@@ -33,14 +33,20 @@ def processing() -> rx.Component:
     return layout(processing_page())
 
 
+from app.pages.videos import videos_page
+
+
 def videos() -> rx.Component:
-    return layout(placeholder_page("Mes Vidéos"))
+    return layout(videos_page())
 
 
 def settings() -> rx.Component:
     return layout(placeholder_page("Paramètres"))
 
 
+from app.db.database import init_db
+
+init_db()
 app = rx.App(
     theme=rx.theme(appearance="light"),
     head_components=[

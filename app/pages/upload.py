@@ -65,13 +65,17 @@ def upload_page() -> rx.Component:
                         class_name="w-16 h-16 text-gray-400 mx-auto mb-4",
                     ),
                     rx.el.h2(
-                        "Glissez-déposez votre vidéo ici",
+                        "Glissez-d\x92posez votre vid\x92o ici",
                         class_name="text-xl font-semibold text-gray-700",
                     ),
                     rx.el.p("ou", class_name="text-gray-500 my-2"),
                     rx.el.button(
-                        "Sélectionner un fichier",
+                        "S\x92lectionner un fichier",
                         class_name="bg-orange-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-orange-600 transition-colors",
+                    ),
+                    rx.el.p(
+                        "MP4, MOV, AVI, MKV, WebM - Max 500MB",
+                        class_name="text-xs text-gray-500 mt-4",
                     ),
                     rx.cond(
                         AppState.is_uploading,
@@ -85,7 +89,7 @@ def upload_page() -> rx.Component:
                                 f"{AppState.feedback_message} {AppState.upload_progress}%",
                                 class_name="text-sm text-orange-600 mt-2",
                             ),
-                            class_name="w-full",
+                            class_name="w-full max-w-sm",
                         ),
                         None,
                     ),
@@ -99,7 +103,9 @@ def upload_page() -> rx.Component:
                 max_width="800px",
                 cursor="pointer",
                 bg="white",
-                on_drop=AppState.handle_upload,
+                on_drop=AppState.handle_upload(
+                    rx.upload_files(upload_id="upload_area")
+                ),
                 on_mount=rx.clear_selected_files("upload_area"),
             ),
         ),

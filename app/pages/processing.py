@@ -139,11 +139,33 @@ def processing_page() -> rx.Component:
                     class_name="flex flex-col lg:flex-row gap-8",
                 ),
                 rx.el.div(
-                    rx.el.p(
-                        "Aucune donn\x01es \x01 afficher. Le traitement a peut-\x02tre \x01chou\x01 ou n'a pas encore commenc\x01.",
-                        class_name="text-gray-500 text-center py-12",
+                    rx.el.div(
+                        rx.icon(
+                            "flag_triangle_right",
+                            class_name="w-16 h-16 text-red-400 mb-4",
+                        ),
+                        rx.el.h3(
+                            "Erreur de Traitement",
+                            class_name="text-xl font-bold text-gray-800 mb-2",
+                        ),
+                        rx.el.p(
+                            "Le traitement de la vid\x92o a \x92chou\x92. Raison de l'erreur:",
+                            class_name="text-gray-600",
+                        ),
+                        rx.el.code(
+                            ProcessingState.processing_step,
+                            class_name="mt-2 text-sm text-red-600 bg-red-50 p-2 rounded-md font-mono",
+                        ),
+                        rx.el.a(
+                            rx.el.button(
+                                "R\x92essayer avec une autre vid\x92o",
+                                on_click=lambda: rx.redirect("/upload"),
+                                class_name="mt-6 bg-orange-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-orange-600 transition-colors",
+                            )
+                        ),
+                        class_name="flex flex-col items-center justify-center text-center p-12",
                     ),
-                    class_name="bg-white rounded-2xl shadow-sm border",
+                    class_name="bg-white rounded-2xl shadow-sm border border-red-200",
                 ),
             ),
         ),
